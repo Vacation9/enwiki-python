@@ -88,7 +88,7 @@ class Article:
 		Get an Edit Token. The MediaWiki API requires this for security
 		purposes.
 		"""
-		token = ClientCookie.urlopen("http://en.wikipedia.org/w/api.php?action=tokens&format=xml").read().split('edittoken="')[1].split('" />')[0]
+		token = ApiAction({"action": "tokens", "type": "edit"}).performAction()["tokens"]["edittoken"]
 		return token
 	def getContent(self):
 		"""
